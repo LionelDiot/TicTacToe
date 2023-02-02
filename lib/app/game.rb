@@ -7,27 +7,29 @@ class Game
     puts "This is what the board looks like :"
     @state = Board.new(@name1, @name2)
     @state.show
-    print "Press Enter when ready to start the game !"
-    gets.chomp
-    puts
-    puts "-" * 20
-    puts
     puts "You play by giving me the combination for a line and column (ex : a1,b2,c3,etc...)"
     puts "The first player to align 3 X or O in a line column or diagonal, wins the game"
+    print "Press Enter when ready to start the game !"
+    gets.chomp
+    system "clear"
+    system "reset"
     game_progress
   end
 
   def game_progress
-    @state.show # uneven nb of cells so i check if the board is full after every first player turn
+    # uneven nb of cells so i check if the board is full after every first player turn
     playerturn(@name1)
-    @state.show
+    system "clear"
+    system "reset"
     while @state.not_full?
       playerturn(@name2)
-      @state.show
-      Done.new(@name2, @name1) if @state.win?
+      system "clear"
+      system "reset"
+      Done.new(@name2, @name1, @state) if @state.win?
       playerturn(@name1)
-      @state.show
-      Done.new(@name1, @name2) if @state.win?
+      system "clear"
+      system "reset"
+      Done.new(@name1, @name2, @state) if @state.win?
     end
     DoneDraw.new
   end
@@ -46,8 +48,11 @@ class Game
       puts "You cheater! that spot is already taken, try to play somewhere else !"
       print "Press Enter to try again"
       gets.chomp
+      system "clear"
+      system "reset"
       playerturn(name)
-    end
+    else
     @state.add(spot, name)
+    end
   end
 end

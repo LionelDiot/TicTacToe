@@ -1,9 +1,10 @@
 class DoneDraw
-  def initialize
+  def initialize(state)
+    state.show
+    puts "_" * 6
     puts
-    puts "-" * 20
     puts " Dommage c'est une égalité !"
-    puts "Press y to play again ! Anything else will exist !"
+    puts "Press y to play again ! Anything else will exit !"
     answer = gets.chomp
     answer == "y" ? Index.new : exit
   end

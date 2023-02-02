@@ -4,6 +4,7 @@ class Board
   def initialize(name1, name2)
     @tictactoe = [[" ", "1", " ", "2", " ", "3"], ["A", " ", "|", " ", "|", " "], [" ", "-", "+", "-", "+", "-"], ["B", " ", "|", " ", "|", " "], [" ", "-", "+", "-", "+", "-"], ["C", " ", "|", " ", "|", " "]]
     @player_to_symbol = { name1 => "X", name2 => "O" }
+    puts @player_to_symbol.inspect
   end
 
   def add(spot, name)
@@ -18,6 +19,7 @@ class Board
 
   def show
     @tictactoe.each { |line|
+      print " " * 12
       line.each { |cell|
         print cell
       }
