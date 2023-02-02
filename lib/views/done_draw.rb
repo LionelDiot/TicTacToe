@@ -4,6 +4,7 @@ class DoneDraw
     puts "_" * 6
     puts
     puts " Dommage c'est une égalité !"
+    gets.chomp
     puts "Press y to play again ! Anything else will exit !"
     answer = gets.chomp
     answer == "y" ? Index.new : exit

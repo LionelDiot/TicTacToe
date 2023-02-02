@@ -1,6 +1,8 @@
 class Index
   
   def initialize
+    system "clear"
+    system "reset"
     puts "Welcome to my first TicTacToe Game !"
     puts "-" * 36
     puts "This game is for 2 players :"

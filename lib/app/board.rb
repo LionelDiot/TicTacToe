@@ -1,10 +1,11 @@
+# rubocop:disable Lint/DuplicateBranch
 class Board
   attr_accessor :tictactoe
 
-  def initialize(name1, name2)
-    @tictactoe = [[" ", "1", " ", "2", " ", "3"], ["A", " ", "|", " ", "|", " "], [" ", "-", "+", "-", "+", "-"], ["B", " ", "|", " ", "|", " "], [" ", "-", "+", "-", "+", "-"], ["C", " ", "|", " ", "|", " "]]
-    @player_to_symbol = { name1 => "X", name2 => "O" }
-    puts @player_to_symbol.inspect
+  def initialize(name0, name1)
+    @tictactoe = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+    @player_to_symbol = { name0 => "X".colorize(:red), name1 => "O".colorize(:blue) }
+    
   end
 
   def add(spot, name)
@@ -18,31 +19,34 @@ class Board
   end
 
   def show
-    @tictactoe.each { |line|
-      print " " * 12
-      line.each { |cell|
-        print cell
-      }
-      puts
-    }
+    puts
+    puts "        1   2   3"
+    puts "      ╭―――――――――――╮"
+    puts "    A │ #{@tictactoe[0][0]} | #{@tictactoe[0][1]} | #{@tictactoe[0][2]} │"
+    puts "      │-----------│"
+    puts "    B │ #{@tictactoe[1][0]} | #{@tictactoe[1][1]} | #{@tictactoe[1][2]} │"
+    puts "      │-----------│"
+    puts "    C │ #{@tictactoe[2][0]} | #{@tictactoe[2][1]} | #{@tictactoe[2][2]} │"
+    puts "      ╰―――――――――――╯"
+    puts
   end
 
   def win?
-    if (@tictactoe[1][1] == @tictactoe[1][3]) && (@tictactoe[1][1] == @tictactoe[1][5]) && (@tictactoe[1][5] != " ")
+    if (@tictactoe[0][0] == @tictactoe[0][1]) && (@tictactoe[0][0] == @tictactoe[0][2]) && (@tictactoe[0][2] != " ")
       true
-    elsif (@tictactoe[3][1] == @tictactoe[3][3]) && (@tictactoe[3][1] == @tictactoe[3][5]) && (@tictactoe[3][5] != " ")
+    elsif (@tictactoe[1][0] == @tictactoe[1][1]) && (@tictactoe[1][0] == @tictactoe[1][2]) && (@tictactoe[1][2] != " ")
       true
-    elsif (@tictactoe[5][1] == @tictactoe[5][3]) && (@tictactoe[5][1] == @tictactoe[5][5]) && (@tictactoe[5][5] != " ")
+    elsif (@tictactoe[2][0] == @tictactoe[2][1]) && (@tictactoe[2][0] == @tictactoe[2][2]) && (@tictactoe[2][2] != " ")
       true
-    elsif (@tictactoe[1][1] == @tictactoe[3][1]) && (@tictactoe[1][1] == @tictactoe[5][1]) && (@tictactoe[5][1] != " ")
+    elsif (@tictactoe[0][0] == @tictactoe[1][0]) && (@tictactoe[0][0] == @tictactoe[2][0]) && (@tictactoe[2][0] != " ")
       true
-    elsif (@tictactoe[1][3] == @tictactoe[3][3]) && (@tictactoe[1][3] == @tictactoe[5][3]) && (@tictactoe[1][3] != " ")
+    elsif (@tictactoe[0][1] == @tictactoe[1][1]) && (@tictactoe[0][1] == @tictactoe[2][1]) && (@tictactoe[0][1] != " ")
       true
-    elsif (@tictactoe[1][5] == @tictactoe[3][5]) && (@tictactoe[1][5] == @tictactoe[5][5]) && (@tictactoe[5][5] != " ")
+    elsif (@tictactoe[0][2] == @tictactoe[1][2]) && (@tictactoe[0][2] == @tictactoe[2][2]) && (@tictactoe[2][2] != " ")
       true
-    elsif (@tictactoe[1][1] == @tictactoe[3][3]) && (@tictactoe[1][1] == @tictactoe[5][5]) && (@tictactoe[1][1] != " ")
+    elsif (@tictactoe[0][0] == @tictactoe[1][1]) && (@tictactoe[0][0] == @tictactoe[2][2]) && (@tictactoe[0][0] != " ")
       true
-    elsif (@tictactoe[1][5] == @tictactoe[3][3]) && (@tictactoe[1][5] == @tictactoe[5][1]) && (@tictactoe[1][5] != " ")
+    elsif (@tictactoe[0][2] == @tictactoe[1][1]) && (@tictactoe[0][2] == @tictactoe[2][0]) && (@tictactoe[0][2] != " ")
       true
     else
       false
@@ -52,23 +56,23 @@ class Board
   def find(spot)
     case spot
     when "a1"
-      [1, 1]
+      [0, 0]
     when "a2"
-      [1, 3]
+      [0, 1]
     when "a3"
-      [1, 5]
+      [0, 2]
     when "b1"
-      [3, 1]
+      [1, 0]
     when "b2"
-      [3, 3]
+      [1, 1]
     when "b3"
-      [3, 5]
+      [1, 2]
     when "c1"
-      [5, 1]
+      [2, 0]
     when "c2"
-      [5, 3]
+      [2, 1]
     when "c3"
-      [5, 5]
+      [2, 2]
     end
   end
 
@@ -80,3 +84,6 @@ class Board
     false
   end
 end
+
+# rubocop:enable Lint/DuplicateBranch
+
