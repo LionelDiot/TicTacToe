@@ -3,6 +3,8 @@ class DoneDraw
     puts
     puts "-" * 20
     puts " Dommage c'est une égalité !"
-    puts "Revenez jouer à nouveau demain !"
+    puts "Press y to play again ! Anything else will exist !"
+    answer = gets.chomp
+    answer == "y" ? Index.new : exit
   end
 end
